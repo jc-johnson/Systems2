@@ -24,10 +24,10 @@ int main()
   printf("\n");
  	
  	// creates and initializes 2-D table                   
-  // allocates space for holding num_rows row references
- 	// t will refer to this spaces
-	t = (row_t*) malloc(sizeof(row_t) * num_rows);
+  // create rows
+  t = (row_t*) malloc(sizeof(row_t) * num_rows);
   
+  // create cells / coloums for rows
   for (i=0; i<num_rows; i++){
     t[i]=(entry_t*) malloc(sizeof(entry_t) * num_columns);
     for (j=0; j<num_columns; j++){
@@ -91,7 +91,6 @@ int main()
         // 
       } 
       fclose(file);
-    }
   }
   else {
     perror(filename); //print the error message on stderr.
