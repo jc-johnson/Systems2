@@ -1,0 +1,53 @@
+Caching and Cache-based code optimization
+
+principle of locality - most programs use data and addresses located close together in memory
+
+temporal locality - items likely to be referenced again very soon ex. loops
+
+spacial locality - data items/instructions close together in memory ex. an array
+
+skill: being able to look at a piece of good and get a sense of its locality
+
+how 2d arrays are stored in memory
+
+chach - smaller faster storage device
+
+-
+
+all data and instr lives in main memory divided into blocks
+
+cache hit - when you try to access an address that's stored in cache
+cache miss- when you try to access an address that's not stored in cache
+	- instr must be fetched from memory and must replace an item already in cache
+
+caching is done at the hardware level
+
+Placement policy - determines where a block goes
+Replacement policy - what block you must evict to make room for another one. 
+Evicts least previously used block since you're least likely to use it soon
+- very strict rules due to hardware constraints
+
+cache size c = s*e*b 
+- sets * lines per set * bytes
+
+1. locate set
+2. check if any line in set has matching tag
+each block has a tag
+3. yes + line valid: hit
+
+direct mapped cache - one line per set
+
+Associative cache lets you choose which block gets evicted if you get a miss
+
+with writes - multiple copies of data exist:
+l1, l2, main mem, disk
+
+
+char *argv[] - array of c strings or char pointers
+
+getopt to add options in your program
+s:e:b = option arguments for hw
+
+you want miss rate to be small
+matrix multiplication is the most important matrix operation
+look up dot product in matrix multiplication

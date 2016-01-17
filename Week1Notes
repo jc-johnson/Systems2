@@ -1,0 +1,134 @@
+processes and virtual memory two most important concepts in modern programming
+
+Shell Commands: 
+ls .. - list parent directory contents
+
+cp ../hello.c . - copies hello.c from parent folder into current folder
+
+rm -r - recursively removes everything in the directory
+
+more - shows content of a file
+
+less - shows content of a file in it's own shell window
+
+nano - editor in shell
+
+cp -r /home/bin/etc - copy recursively whole directory
+
+emacs <filename> - open file in emacs
+
+Intro to C:
+
+%x - hexidecimal
+
+%X - uppercase hexidecimal
+
+do while is the fundamental loop all others are based on
+
+At the beginning of your program use named constants for numbers in your programs. easier to modify
+ex. #define LOWER 300
+while (LOWER > 0) {
+  ...
+}
+
+%4d, 3 - adds 4 spaces before the formatted value. makes output cleaner
+
+Declaring a pointer
+int *pi; /* creates 32 bit/4 byte variable */
+int i; /* an int */
+pi = &i; /* pi now hold's i's address*/
+
+each data type has a pointer type
+ex. char and char pointer
+
+each variable has:
+1.) value 
+2.) address
+
+pi is a pointer 
+*pi is an integer
+
+*pi = 15; /*pi now has 15*/
+
+
+int *pi;
+pi = 239; // C will let you do this but you're passing 239 as an address. Not a value.
+
+passing a variable to another function creates a copy of the variable. 
+altering the passed value doesn't affect the origional value
+to affect the original value you have to pass pointers to another function 
+ex. look at swap code from class
+
+no error checking for the end of an array in C
+
+null character /0 tells you where a character ends
+
+segmentation fault - when you try to access memory that wasn't defined for you program.
+
+don't define string:
+char s[10] = "hello"
+
+define a string like this using a char pointer:
+char *ps = "hello"
+
+pointers and arrays are the same thing
+
+while (ps[i] != '\0')
+
+pointer math:
+int y;
+int *p = &y;
+p = p + 5; // adds 20 bytes to address of p (4 bytes for ints * 5)
+
+*p // encoding an array with pointers
+*(p+1)
+*(p+2)
+
+a[0]
+a[1]
+a[2]
+
+
+Struct - is just a compound type. group of different types
+Array - is a group of the same types
+
+Struct is a class without methods
+look at struct examples
+
+Structs and pointers
+employee *eptr;
+(*eptr).first = "Sam";
+
+Notation for a pointer to a struct
+eptr->first = "Sam";
+eptr->last = "Smith";
+eptr->age = 55;
+
+malloc is equivalent to 'new' in Java
+allocates space at run time for new data
+ex. eptr = (employee * ) malloc(12);
+malloc returns a generic pointer = void * - a pointer to nothing
+above you need to cast malloc to the pointer type you'll need so you can reference it again 
+
+int *array = (int *) malloc(40)
+allocates new array on the fly
+
+long *array = (long *) malloc(10*sizeof(long)) // safer for long values to use sizeof
+
+2-d arrays
+typedef int* row_t; // integer pointer
+typedef row_t* table_t; // an array of pointers to rows
+
+t = (table t) malloc(sizeof(row_t)) * num_rows); // dynamically create a table
+
+review how to define structs
+
+use sizeof with malloc to make sure you allocate the right amount of memory
+
+notice the size of ptr to entry with a table
+
+I/O
+
+char buf[1000]; // refers to the size of a line - not the size of a file
+
+how to write cache aware code
