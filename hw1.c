@@ -23,7 +23,7 @@ int main()
   printf("Size of table_t: %lu \n", sizeof(table_t));
   printf("\n");
  	
- 	// creates and initializes 2-D table                   
+  // creates and initializes 2-D table                   
   // create rows
   t = (row_t*) malloc(sizeof(row_t) * num_rows);
   
@@ -56,14 +56,21 @@ int main()
   // to point 2D array back to 0, 0 
   i = 0;
   j = 0;
+	
+  int c;
   
   if (file != NULL) {
   char line [1000];
     while(fgets(line,sizeof line,file) != NULL) /* read a line from a file */ {
       fprintf(stdout,"%s \n",line); 
       temp = line; // pointer to reach characters in line
-      
-      /*/ parse line
+		
+      while ((c = fgetc(file)) != EOF) {
+		printf("temp value: %c\n" , c);
+	  }
+		
+		
+      /* // parse line
       while (*temp != (long unsigned int) NULL) {
         // checks if *temp is an ASCii int or an uppcase or lowercase letter
         if (((int) *temp >= 48 && (int) *temp <= 57) || (((int) *temp >= 65 && (int) *temp <= 90)) 
