@@ -13,10 +13,10 @@ table_t t;
 
 int main()
 {
-  int num_rows = 3;
-  int num_columns = 4;
-  int i, j;
-  char *temp;
+  	int num_rows = 3;
+  	int num_columns = 4;
+	int i, j;
+	char *temp;
     
   printf("Size of entry_t* row_t: %lu \n", sizeof(row_t));
   printf("Size of entry_t: %lu \n", sizeof(entry_t));
@@ -27,20 +27,20 @@ int main()
   // create rows
   t = (row_t*) malloc(sizeof(row_t) * num_rows);
   
-  // create cells / coloums for rows
+  // create cells / colums for rows
   for (i=0; i<num_rows; i++){
     t[i]=(entry_t*) malloc(sizeof(entry_t) * num_columns);
     for (j=0; j<num_columns; j++){
-      t[i][j].n = i;
-      t[i][j].c = j;
+      t[i][j].n = 0;
+      t[i][j].c = 0;
     }
   }
   
-	// Print the value in table t, row by row
-	for (i=0; i<num_rows; i++){
-    for (j=0; j<num_columns; j++)
-      printf("(%d, %u) ", t[i][j].c, t[i][j].n);
-    printf("\n");
+  // Print the value in table t, row by row
+  for (i=0; i<num_rows; i++){
+  	for (j=0; j<num_columns; j++)
+      	printf("(%d, %u) ", t[i][j].c, t[i][j].n);
+  		printf("\n");
   }
   printf("\n");
   printf("Character tests: \n");
@@ -63,11 +63,10 @@ int main()
   char line [1000];
     while(fgets(line,sizeof line,file) != NULL) /* read a line from a file */ {
       fprintf(stdout,"%s \n",line); 
-      temp = line; // pointer to reach characters in line
 		
-      while ((c = fgetc(file)) != EOF) {
-		printf("temp value: %c\n" , c);
-	  }
+      /*while ((c = fgetc(file)) != EOF) {
+		printf("Character: %c\n" , c);
+	  }*/
 		
 		
       /* // parse line
@@ -83,19 +82,7 @@ int main()
         temp++;
       }
       // j++; // go to next row */
-      
-      // test print
-      i = 0;
-        printf("SizeOf NULL: %lu\n", sizeof(NULL));
-        while (*temp != (long unsigned int) NULL) {
-          printf("Line[%d]: %c \n", i, *temp);
-          temp++;
-          i++;
-        }
-      
-        // t[i][j].c = *temp;
-        // t[i][j].n = *temp;
-        // 
+    
       } 
       fclose(file);
   }
@@ -106,10 +93,11 @@ int main()
 
   // TO DO: print updated table
   for (i=0; i<num_rows; i++){
-    for (j=0; j<num_columns; j++)
-      printf("%d%u ", t[i][j].c, t[i][j].n);
-    printf("\n");
+  	for (j=0; j<num_columns; j++)
+      	printf("(%d, %u) ", t[i][j].c, t[i][j].n);
+  		printf("\n");
   }
+  printf("\n");
   
   // free the dynammically allocated space before terminating
   for (i=0; i<num_rows; i++){
