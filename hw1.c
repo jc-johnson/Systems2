@@ -13,17 +13,11 @@ table_t t;
 
 int main()
 {
-  	int num_rows = 3;
-  	int num_columns = 4;
-	int i, j;
-	char *temp;
-    
-  printf("Size of entry_t* row_t: %lu \n", sizeof(row_t));
-  printf("Size of entry_t: %lu \n", sizeof(entry_t));
-  printf("Size of table_t: %lu \n", sizeof(table_t));
-  printf("\n");
- 	
-  // creates and initializes 2-D table                   
+  int num_rows = 3;
+  int num_columns = 4;
+  int i, j;
+ 
+  // create and initialize 2-D table                   
   // create rows
   t = (row_t*) malloc(sizeof(row_t) * num_rows);
   
@@ -36,66 +30,70 @@ int main()
     }
   }
   
-  // Print the value in table t, row by row
+  // Print the values of each cell in table t
   for (i=0; i<num_rows; i++){
-  	for (j=0; j<num_columns; j++)
-      	printf("(%d, %u) ", t[i][j].c, t[i][j].n);
-  		printf("\n");
+    for (j=0; j<num_columns; j++)
+      printf("(%d, %u) ", t[i][j].c, t[i][j].n);
+      printf("\n");
   }
   printf("\n");
-  printf("Character tests: \n");
-  printf("( : , %d\n",  '(' );
-    
-
-  // TODO: open file data.txt, read it line by line, and
-  // update table entries;
   
   // Open and store file in an array
   char filename[] = "data.txt";
   FILE *file = fopen ( filename, "r" );
-  // to point 2D array back to 0, 0 
-  i = 0;
-  j = 0;
-	
-  int c;
   
+  char row;
+  char column;
+  char cValue;
+  char nValue;
+  char conversionVal = '0';
+    
   if (file != NULL) {
   char line [1000];
-    while(fgets(line,sizeof line,file) != NULL) /* read a line from a file */ {
-      fprintf(stdout,"%s \n",line); 
-		
-      /*while ((c = fgetc(file)) != EOF) {
-		printf("Character: %c\n" , c);
-	  }*/
-		
-		
-      /* // parse line
-      while (*temp != (long unsigned int) NULL) {
-        // checks if *temp is an ASCii int or an uppcase or lowercase letter
-        if (((int) *temp >= 48 && (int) *temp <= 57) || (((int) *temp >= 65 && (int) *temp <= 90)) 
-             || ((int) *temp >= 97 && (int) *temp <=122)) {
-          t[i][j].c = *temp;
-          // temp++; 
-          // t[i][j].n = *temp; 
-          i++;
-        }
-        temp++;
-      }
-      // j++; // go to next row */
+  while(fgets(line,sizeof line,file) != NULL) /* read a line from a file */ {
+    fprintf(stdout,"%s \n",line); 
+
+    // print tests for the values wanted in each row
+    printf("line[1]: %c\n", line[1]);
+    row = line[1];
+    printf("row: %c\n", row);
+   
+    printf("line[3]: %c\n", line[3]);  
+    column = line[3];
+    printf("column: %c\n", column);
     
-      } 
-      fclose(file);
+    printf("line[7]: %c\n", line[7]);  
+    cValue = line[7];
+    printf("cValue: %c\n", cValue);  
+      
+    printf("line[9]: %c\n", line[9]);  
+    nValue = line[9];
+    printf("nValue: %c\n", nValue);
+      
+    i = row - conversionVal;
+    j = column - conversionVal;
+    printf("i: %d\n", i);
+    printf("j: %d\n", j);
+    t[i][j].c = cValue;
+    t[i][j].n = nValue;
+    
+    printf("t[0][0].c: %d\n", t[0][0].c);
+    printf("t[0][0].n: %d\n", t[0][0].n);
+    printf("\n");
+       
+    } 
+    fclose(file);
   }
   else {
     perror(filename); //print the error message on stderr.
   }
   printf("\n"); 
 
-  // TO DO: print updated table
+  // print updated table
   for (i=0; i<num_rows; i++){
-  	for (j=0; j<num_columns; j++)
-      	printf("(%d, %u) ", t[i][j].c, t[i][j].n);
-  		printf("\n");
+    for (j=0; j<num_columns; j++)
+        printf("(%d, %u) ", t[i][j].c, t[i][j].n);
+  printf("\n");
   }
   printf("\n");
   
