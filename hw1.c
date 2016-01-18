@@ -51,10 +51,9 @@ int main()
   if (file != NULL) {
   char line [1000];
   while(fgets(line,sizeof line,file) != NULL) /* read a line from a file */ {
-    // if (line[0] == NULL) terminate
     fprintf(stdout,"%s \n",line); 
 
-    // print tests for the values wanted in each row
+    // print tests for wanted values in each row
     printf("line[1]: %c\n", line[1]);
     row = line[1];
     printf("row: %c\n", row);
@@ -98,8 +97,12 @@ int main()
 
   // print updated table
   for (i=0; i<num_rows; i++){
-    for (j=0; j<num_columns; j++)
-        printf("(%c, %c) ", t[i][j].c, t[i][j].n);
+    for (j=0; j<num_columns; j++) {
+        if (t[i][j].n == 0)
+            printf("(%d, %d) ", t[i][j].c, t[i][j].n);
+        else
+            printf("(%c, %c) ", t[i][j].c, t[i][j].n);
+    }
   printf("\n");
   }
   printf("\n");
