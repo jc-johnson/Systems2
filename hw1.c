@@ -51,6 +51,7 @@ int main()
   if (file != NULL) {
   char line [1000];
   while(fgets(line,sizeof line,file) != NULL) /* read a line from a file */ {
+    // if (line[0] == NULL) terminate
     fprintf(stdout,"%s \n",line); 
 
     // print tests for the values wanted in each row
@@ -72,15 +73,21 @@ int main()
       
     i = row - conversionVal;
     j = column - conversionVal;
+    
+    if ((i < 0) || (j < 0))
+        break;
+      
     printf("i: %d\n", i);
     printf("j: %d\n", j);
     t[i][j].c = cValue;
     t[i][j].n = nValue;
     
-    printf("t[0][0].c: %d\n", t[0][0].c);
-    printf("t[0][0].n: %d\n", t[0][0].n);
+    printf("t[%d][%d].c: %c\n", i, j, t[i][j].c);
+    printf("t[%d][%d].n: %c\n", i, j, t[i][j].n);
     printf("\n");
-       
+      
+    i = 0;
+    j = 0;
     } 
     fclose(file);
   }
@@ -92,7 +99,7 @@ int main()
   // print updated table
   for (i=0; i<num_rows; i++){
     for (j=0; j<num_columns; j++)
-        printf("(%d, %u) ", t[i][j].c, t[i][j].n);
+        printf("(%c, %c) ", t[i][j].c, t[i][j].n);
   printf("\n");
   }
   printf("\n");
