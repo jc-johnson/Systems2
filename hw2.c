@@ -8,12 +8,12 @@ typedef struct {
     int setIndex;
 } cache;
 
-typedef struct* set;
-typedef set* setPointer; // maybe call it memory later
+typedef cache *set;
+typedef set *setPointer; // maybe call it memory later
 
 // TODO: add bitwise function to get tag bits and b bits.
 
-void main() {
+int main() {
     
     
 }
